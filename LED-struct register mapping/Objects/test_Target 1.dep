@@ -1,0 +1,4 @@
+Dependencies for Project 'test', Target 'Target 1': (DO NOT MODIFY !)
+F (.\startup_stm32f10x_hd.s)(0x559784E0)(--cpu Cortex-M3 -g --apcs=interwork -I "C:\Users\872534679\LED-struct register mapping\RTE"-I D:\MDK\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-I D:\MDK\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 515" --pd "STM32F10X_HD SETA 1"--list .\listings\startup_stm32f10x_hd.lst --xref -o .\objects\startup_stm32f10x_hd.o --depend .\objects\startup_stm32f10x_hd.d)
+F (.\main.c)(0x59B91FB3)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I "C:\Users\872534679\LED-struct register mapping\RTE"-I D:\MDK\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-I D:\MDK\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (stm32f10x.h)(0x59B91FA4)
