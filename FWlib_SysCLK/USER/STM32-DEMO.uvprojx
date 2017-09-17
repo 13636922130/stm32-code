@@ -433,9 +433,9 @@
               <FilePath>.\LED.c</FilePath>
             </File>
             <File>
-              <FileName>KEY.c</FileName>
+              <FileName>RCCCLKConfig.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\KEY.c</FilePath>
+              <FilePath>.\RCCCLKConfig.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -451,6 +451,11 @@
               <FileName>stm32f10x_gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\FWlib\src\stm32f10x_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FWlib\src\stm32f10x_flash.c</FilePath>
             </File>
           </Files>
         </Group>
