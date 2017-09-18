@@ -14,9 +14,6 @@ void HSE_SetSysCLK(uint32_t RCC_PLLMul_x)
 		FLASH_PrefetchBufferCmd(FLASH_PrefetchBuffer_Enable);
 		FLASH_SetLatency(FLASH_Latency_2);
 		
-		RCC_HCLKConfig(RCC_SYSCLK_Div1);
-		RCC_PCLK1Config(RCC_HCLK_Div2);
-		RCC_PCLK2Config(RCC_HCLK_Div1);
 		
 		//≈‰÷√PLLCLK=HSE*RCC_PLLMul_x
 		RCC_PLLConfig(RCC_PLLSource_HSE_Div1,RCC_PLLMul_x);
@@ -28,6 +25,11 @@ void HSE_SetSysCLK(uint32_t RCC_PLLMul_x)
 		RCC_SYSCLKConfig(RCC_SYSCLKSource_PLLCLK);
 		//µ»¥˝SYSCLKµƒ≈‰÷√
 		while(RCC_GetSYSCLKSource()!=0x08);
+		
+		RCC_HCLKConfig(RCC_SYSCLK_Div1);
+		RCC_PCLK1Config(RCC_HCLK_Div2);
+		RCC_PCLK2Config(RCC_HCLK_Div1);
+
 	}
 }
 
