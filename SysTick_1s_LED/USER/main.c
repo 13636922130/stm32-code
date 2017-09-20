@@ -1,14 +1,16 @@
 #include "stm32f10x.h"
 #include "LED.h"
-#include "EXTI.h"
+#include "SysTick.h"
 
 int main()
 {
-	EXTI_Key_Config();
 	LED_GPIO_Config();
-	LED(OFF);
 	while(1)
 	{
+		LED(ON);
+		Delay_Ms(1000);
+		LED(OFF);
+		Delay_Ms(1000);
 	}
 }
 

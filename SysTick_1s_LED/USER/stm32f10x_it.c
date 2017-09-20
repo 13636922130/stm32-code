@@ -23,8 +23,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
-#include "LED.h"
-#include "EXTI.h"
+
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
   */
@@ -137,12 +136,7 @@ void SysTick_Handler(void)
 {
 }
 
-void EXTI0_IRQHandler(void)
-{
-	if(EXTI_GetITStatus(EXTI_Line0)==SET)
-		LED_TOGGLE;
-	EXTI_ClearITPendingBit(EXTI_Line0);
-}
+
 
 /******************************************************************************/
 /*                 STM32F10x Peripherals Interrupt Handlers                   */
