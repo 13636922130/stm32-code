@@ -15,8 +15,7 @@ void Usart_Config(void)
 	//RX
 	GPIO_InitStructure.GPIO_Pin=USART_GPIO_RX_Pin;
 	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IN_FLOATING;
-	GPIO_Init(USART_GPIO_Port,&GPIO_InitStructure);
-	
+ 	
 	//配置Usart
 	USART_InitStructure.USART_BaudRate=USART_BRate;
 	USART_InitStructure.USART_WordLength=USART_WordLength_8b;
@@ -27,9 +26,56 @@ void Usart_Config(void)
 	USART_Init(USARTx,&USART_InitStructure);
 	USART_Cmd(USARTx,ENABLE);
 }
-void USART_Send(USART_TypeDef* USARTy, uint8_t Data)
+void USART_Send_8bit(USART_TypeDef* USARTy, uint8_t Data)
 {
 	USART_SendData(USARTy,Data);
 	while(USART_GetFlagStatus(USARTy,USART_FLAG_TXE)!=SET);
 }
+
+void USART_Send_16bit(USART_TypeDef* USARTy, uint16_t Data)
+{
+	uint8_t temp_h,temp_l;
+	temp_h=(Data&0xff00)>>8;
+	temp_l=(Data&0xff);
+	USART_SendData(USARTy,temp_h);
+	while(USART_GetFlagStatus(USARTy,USART_FLAG_TXE)!=SET);
+	USART_SendData(USARTy,temp_l);
+	while(USART_GetFlagStatus(USARTy,USART_FLAG_TXE)!=SET);
+}
+void USART_Send_Array(USART_TypeDef* USARTy, uint8_t *a,uint8_t num)
+{
+	uint8_t i;
+	for(i=0;i<num;i++)
+	{
+		USART_Send_8bit(USARTy,a[i]);
+	}while(USART_GetFlagStatus(USARTy,USART_FLAG_TC)!=SET);
+}
+
+void USART_Send_String(USART_TypeDef* USARTy, uint8_t *str)
+{
+	uint8_t i=0;
+//	do
+//	{
+//		USART_Send_8bit(USARTy,*(str+i));
+//		i++;
+//	}while(*(str+i)!='\0');
+	while(str[i]!='\0')
+	{
+		USART_Send_8bit(USARTy,str[i]);
+		i++;
+	}
+	while(USART_GetFlagStatus(USARTy,USART_FLAG_TC)!=SET);
+}
+//重定义c库函数printf到串口，重定义后才能使用printf函数
+int fputc(int ch,FILE *f)
+{
+	USART_SendData(USARTx,(uint8_t)ch);
+	while(USART_GetFlagStatus(USARTx,USART_FLAG_TXE)==RESET);
+	return (ch);
+}
+
+
+
+
+
 
