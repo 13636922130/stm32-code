@@ -1,4 +1,13 @@
 #include "Usart.h"
+void NVIC_Config(void)
+{
+	NVIC_InitTypeDef NVIC_InitStructure;
+	NVIC_InitStructure.NVIC_IRQChannel=USART1_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=1;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority=1;
+	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
+}
 void Usart_Config(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -24,6 +33,9 @@ void Usart_Config(void)
 	USART_InitStructure.USART_Mode=USART_Mode_Rx|USART_Mode_Tx;
 	USART_InitStructure.USART_HardwareFlowControl=USART_HardwareFlowControl_None;
 	USART_Init(USARTx,&USART_InitStructure);
+	
+//  NVIC_Config();
+	USART_ITConfig(USARTx,USART_IT_RXNE,ENABLE);
 	USART_Cmd(USARTx,ENABLE);
 }
 void USART_Send_8bit(USART_TypeDef* USARTy, uint8_t Data)
@@ -72,6 +84,11 @@ int fputc(int ch,FILE *f)
 	USART_SendData(USARTx,(uint8_t)ch);
 	while(USART_GetFlagStatus(USARTx,USART_FLAG_TXE)==RESET);
 	return (ch);
+}
+int fgetc(FILE *f)
+{
+	while(USART_GetFlagStatus(USART1,USART_FLAG_RXNE)!=SET);
+	return (int)USART_ReceiveData(USART1);
 }
 
 

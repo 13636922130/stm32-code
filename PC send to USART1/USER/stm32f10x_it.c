@@ -23,7 +23,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
-
+#include "Usart.h"
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
   */
@@ -136,7 +136,16 @@ void SysTick_Handler(void)
 {
 }
 
-
+void USART1_IRQHandler(void)
+{
+	uint8_t temp;
+	if(USART_GetITStatus(USARTx,USART_IT_RXNE)==SET)
+	{
+		temp=USART_ReceiveData(USART1);
+		//USART_SendData(USARTx,temp);
+		USART_Send_8bit(USARTx,temp);
+	}
+}
 
 /******************************************************************************/
 /*                 STM32F10x Peripherals Interrupt Handlers                   */
