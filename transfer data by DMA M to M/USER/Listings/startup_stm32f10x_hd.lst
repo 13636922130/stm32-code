@@ -553,11 +553,11 @@ ARM Macro Assembler    Page 9
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=d:\mdk\output\startup_stm32f10x_hd.d -od:\mdk\output\startup_stm32
-f10x_hd.o -IC:\Users\872534679\Desktop\STM32-Temp\USER\RTE -ID:\MDK\ARM\PACK\Ke
-il\STM32F1xx_DFP\1.1.0\Device\Include -ID:\MDK\ARM\CMSIS\Include --predefine="_
-_MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 515" --predefine="STM32F1
-0X_HD SETA 1" --list=.\listings\startup_stm32f10x_hd.lst ..\CMSIS\startup\start
-up_stm32f10x_hd.s
+f10x_hd.o -I"D:\stm32\my stm32 code\transfer data by DMA M to M\USER\RTE" -ID:\
+MDK\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include -ID:\MDK\ARM\CMSIS\Include
+ --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 515" --pre
+define="STM32F10X_HD SETA 1" --list=.\listings\startup_stm32f10x_hd.lst ..\CMSI
+S\startup\startup_stm32f10x_hd.s
 
 
 
