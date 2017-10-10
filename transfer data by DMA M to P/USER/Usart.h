@@ -11,10 +11,6 @@
 #define USARTx                   USART1
 void Usart_Config(void);
 void USART_Send_8bit(USART_TypeDef* USARTy, uint8_t Data);
-void USART_Send_16bit(USART_TypeDef* USARTy, uint16_t Data);
-void USART_Send_Array(USART_TypeDef* USARTy, uint8_t *a,uint8_t num);
-void USART_Send_String(USART_TypeDef* USARTy, uint8_t *str);
-int fputc(int ch,FILE *f);
 #endif //__USART_H
 
 
