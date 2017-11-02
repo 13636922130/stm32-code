@@ -23,9 +23,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
-#include "TIM.h"
-#include "stm32f10x_tim.h"
-extern uint32_t time;
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
   */
@@ -138,14 +135,6 @@ void SysTick_Handler(void)
 {
 }
 
-void TIM6_IRQHandler(void)
-{
-	if(TIM_GetITStatus(TIMx,TIM_IT_Update)!=RESET)
-	{
-		time++;
-		TIM_ClearITPendingBit(TIMx,TIM_IT_Update);
-	}
-}
 
 /******************************************************************************/
 /*                 STM32F10x Peripherals Interrupt Handlers                   */
