@@ -23,6 +23,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
+#include "GeneralTim.h"
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
   */
@@ -133,9 +134,35 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+
 }
 
-
+void TIM5_IRQHandler(void)
+{
+	if(TIM_GetITStatus(TIM5,TIM_IT_Update)!=RESET)
+	{
+		TIM_ICUserValueStructure.PeriodValue++;
+		TIM_ClearITPendingBit(TIM5,TIM_IT_Update);
+	}
+	if(TIM_GetITStatus(TIM5,TIM_IT_CC1)!=RESET)
+	{
+		if(TIM_ICUserValueStructure.StartFlag==0)
+		{
+			TIM_SetCounter(TIM5,0);
+			TIM_ICUserValueStructure.CCRValue=0;
+			TIM_ICUserValueStructure.PeriodValue=0;
+			TIM_ICUserValueStructure.StartFlag=1;
+			TIM_OC1PolarityConfig(TIM5,TIM_OCPolarity_Low);
+		}
+		else
+		{
+			TIM_ICUserValueStructure.CCRValue=TIM_GetCounter(TIM5);
+			TIM_ICUserValueStructure.StartFlag=0;
+			TIM_ICUserValueStructure.FinishFlag=1;
+		}
+		TIM_ClearITPendingBit(TIM5,TIM_IT_CC1);
+	}
+}
 /******************************************************************************/
 /*                 STM32F10x Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */

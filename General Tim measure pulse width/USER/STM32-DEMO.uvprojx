@@ -428,9 +428,24 @@
               <FilePath>.\main.c</FilePath>
             </File>
             <File>
-              <FileName>AdvenceTim.c</FileName>
+              <FileName>stm32f10x_tim.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\AdvenceTim.c</FilePath>
+              <FilePath>..\FWlib\src\stm32f10x_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>Usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>GeneralTim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\GeneralTim.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stm32f10x_it.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -458,9 +473,9 @@
               <FilePath>..\FWlib\src\misc.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f10x_tim.c</FileName>
+              <FileName>stm32f10x_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\FWlib\src\stm32f10x_tim.c</FilePath>
+              <FilePath>..\FWlib\src\stm32f10x_usart.c</FilePath>
             </File>
           </Files>
         </Group>
